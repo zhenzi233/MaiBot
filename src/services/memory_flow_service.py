@@ -29,6 +29,24 @@ from .person_fact_reverification import reclassify_historical_person_facts
 
 logger = get_logger("memory_flow_service")
 
+def _to_static_image_bytes(payload: bytes) -> bytes:
+    """把动图(GIF/APNG)降级成首帧 PNG,避免长期记忆层拒绝该格式。"""
+    try:
+        from PIL import Image as _PILImage
+
+        with _PILImage.open(io.BytesIO(payload)) as image:
+            fmt = str(image.format or "").upper()
+            if fmt not in {"GIF", "APNG"}:
+                return payload
+            image.seek(0)
+            frame = image.convert("RGBA")
+    except Exception:
+        return payload
+    out = io.BytesIO()
+    frame.save(out, format="PNG")
+    return out.getvalue()
+
+
 
 @dataclass
 class PersonFactEvidence:
@@ -940,7 +958,7 @@ class ImageMemoryWritebackService:
                     await component.load_image_binary()
                 result = await memory_service.image_memory(
                     action="ingest",
-                    image_bytes=bytes(component.binary_data),
+                    image_bytes=_to_static_image_bytes(bytes(component.binary_data)),
                     source_kind="chat",
                     external_ref=build_chat_external_ref(
                         chat_id=chat_id,
