@@ -1,0 +1,7 @@
+[plugin]
+name = "store_emoji_plugin"
+config_version = "1.0.0"
+enabled = true
+
+[store]
+max_binary_mb = 8.0
