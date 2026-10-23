@@ -365,6 +365,7 @@ run_pet.bat
 
 /plugins/*
 !/plugins
+!/plugins/store_emoji_plugin
 !/plugins/hello_world_plugin
 !/plugins/emoji_manage_plugin
 !/plugins/__init__.py

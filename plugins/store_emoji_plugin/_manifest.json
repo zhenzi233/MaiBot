@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+  "id": "zhenzi233.store-emoji-plugin",
+  "version": "1.0.0",
+  "name": "表情入库 | Store Emoji",
+  "description": "让麦麦能把群友发的图片真正存进表情包库，并如实回答库里还有多少容量",
+  "author": {
+    "name": "zhenzi233",
+    "url": "https://github.com/zhenzi233"
+  },
+  "license": "MIT",
+  "urls": {
+    "repository": "https://github.com/zhenzi233/MaiBot",
+    "homepage": "https://github.com/zhenzi233/MaiBot",
+    "documentation": "https://github.com/zhenzi233/MaiBot",
+    "issues": "https://github.com/zhenzi233/MaiBot/issues"
+  },
+  "host_application": {
+    "min_version": "1.3.0",
+    "max_version": "1.3.99"
+  },
+  "sdk": {
+    "min_version": "2.8.0",
+    "max_version": "2.99.99"
+  },
+  "dependencies": [],
+  "capabilities": [
+    "emoji.register",
+    "emoji.get_info",
+    "emoji.get_count",
+    "message.get_by_id",
+    "message.get_recent"
+  ],
+  "i18n": {
+    "default_locale": "zh-CN",
+    "locales_path": "_locales",
+    "supported_locales": [
+      "zh-CN"
+    ]
+  },
+  "plugin_type": "tool",
+  "display": {
+    "icon": {
+      "type": "emoji",
+      "value": "⭐"
+    }
+  }
+}
